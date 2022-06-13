@@ -1,0 +1,8 @@
+{
+    "name": "HighlightSoldOrders",
+    "description": "Highlights Bazaar orders which have filled in Hypixel Skyblock.",
+    "author": "FluxCapacitor2",
+    "entry": "index.js",
+    "version": "0.0.1",
+    "requires": []
+}
