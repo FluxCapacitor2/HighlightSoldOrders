@@ -4,7 +4,7 @@ HighlightSoldOrders made by FluxCapacitor2 for ChatTriggers 2.0.0+
 
 Bazaar orders only show up in containers titled "Your Bazaar Orders".
 Items that represent bazaar orders always have display names that start with "§a§lBUY§7: " or "§6§lSELL§7: ",
-and when they are ready to be claimed, they have a line in their lore that contains the text "Click to claim!".
+and when they are ready to be claimed, they have a line in their lore that contains the text "Filled: xx/xx 100%!".
 
 Credits:
 - ExperimentationTable by Antonio32a: Code for highlighting slots in a GUI
@@ -45,7 +45,10 @@ register("renderSlot", (slot, _container, _event) => {
  */
 function isBazaarOrder(item) {
     return item != null && (item.getName().startsWith("§6§lSELL§7: ") || item.getName().startsWith("§a§lBUY§7: ")) &&
-        item.getLore().some((line) => ChatLib.removeFormatting(line).includes("Click to claim!"))
+        item.getLore().some((line) => {
+            let unformatted = ChatLib.removeFormatting(line);
+            return unformatted.startsWith("Filled: ") && unformatted.endsWith("100%!");
+    })
 }
 
 function isBazaarOrdersPageOpen() {
